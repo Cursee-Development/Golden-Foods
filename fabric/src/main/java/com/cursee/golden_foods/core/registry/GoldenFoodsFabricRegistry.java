@@ -6,6 +6,7 @@ import com.cursee.golden_foods.core.block.GoldenCakeBlock;
 import com.cursee.golden_foods.core.item.*;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -14,13 +15,21 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.ConditionalEffect;
+import net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+
+import java.util.List;
+import java.util.function.UnaryOperator;
 
 public class GoldenFoodsFabricRegistry {
     
     public static void register() {}
+
+
     
     public static Item registerItem(String name, Item item) {
         return Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item);
@@ -52,6 +61,10 @@ public class GoldenFoodsFabricRegistry {
         return Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name),
                 new BlockItem(block, new Item.Properties().rarity(Rarity.EPIC).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
     }
+
+
+
+
 
     public static final Item.Properties GOLDEN_FOOD_PROPERTIES = new Item.Properties()
             .rarity(Rarity.RARE)

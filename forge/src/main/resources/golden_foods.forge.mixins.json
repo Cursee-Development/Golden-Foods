@@ -4,7 +4,9 @@
   "package": "com.cursee.golden_foods.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [],
+  "mixins": [
+    "ForgeEnchantmentsMixin"
+  ],
   "client": [],
   "server": [],
   "injectors": {
