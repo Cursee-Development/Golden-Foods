@@ -1,5 +1,7 @@
 package com.cursee.golden_foods;
 
+import com.cursee.golden_foods.core.item.ForgeCreativeModeTabs;
+import com.cursee.golden_foods.core.item.ForgeItems;
 import com.cursee.monolib.core.sailing.Sailing;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -27,44 +29,12 @@ import java.util.function.UnaryOperator;
 @Mod(Constants.MOD_ID)
 public class GoldenFoodsNeoForge {
 
-    public static final ResourceKey<Enchantment> GOLDEN_FOOD_ENCHANTMENT = key("golden_food");
-
-    public static Holder<Enchantment> GOLDEN_FOOD_ENCHANTMENT_HOLDER;
-
-    public static final DataComponentType<List<ConditionalEffect<EnchantmentValueEffect>>> GOLDEN_FOOD = registerEnchantment("golden_food", ($$0) -> {
-        return $$0.persistent(ConditionalEffect.codec(EnchantmentValueEffect.CODEC, LootContextParamSets.ENCHANTED_ENTITY).listOf());
-    });
-
-    private static ResourceKey<Enchantment> key(String $$0) {
-        return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.withDefaultNamespace($$0));
-    }
-
-    public static void init(RegistryAccess registryAccess) {
-        Registry<Enchantment> enchantmentRegistry = registryAccess.registryOrThrow(Registries.ENCHANTMENT);
-        GOLDEN_FOOD_ENCHANTMENT_HOLDER = enchantmentRegistry.getHolderOrThrow(ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "golden_food")));
-    }
-
-    private static void bootstrap(BootstrapContext<Enchantment> $$0, ResourceKey<Enchantment> $$1, Enchantment.Builder $$2) {
-        $$0.register($$1, $$2.build($$1.location()));
-    }
-
-    private static <T> DataComponentType<T> registerEnchantment(String $$0, UnaryOperator<DataComponentType.Builder<T>> $$1) {
-        return Registry.register(BuiltInRegistries.ENCHANTMENT_EFFECT_COMPONENT_TYPE, $$0, ($$1.apply(DataComponentType.builder())).build());
-    }
-
-    public GoldenFoodsNeoForge(IEventBus eventBus) {
+    public GoldenFoodsNeoForge(IEventBus bus) {
 
         GoldenFoods.init();
         Sailing.register(Constants.MOD_NAME, Constants.MOD_ID, Constants.MOD_VERSION, Constants.MC_VERSION_RAW, Constants.PUBLISHER_AUTHOR, Constants.PRIMARY_CURSEFORGE_MODRINTH);
-    }
 
-    @EventBusSubscriber
-    public static class Events {
-
-        @SubscribeEvent
-        public static void onServerStarting(ServerStartingEvent event) {
-            RegistryAccess registryAccess = event.getServer().registryAccess();
-            init(registryAccess);
-        }
+        ForgeItems.register(bus);
+        ForgeCreativeModeTabs.register(bus);
     }
 }

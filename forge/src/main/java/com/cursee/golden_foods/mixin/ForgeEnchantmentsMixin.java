@@ -1,25 +1,10 @@
 package com.cursee.golden_foods.mixin;
 
-import com.cursee.golden_foods.GoldenFoodsForge;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.enchantment.LevelBasedValue;
-import net.minecraft.world.item.enchantment.effects.AddValue;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Enchantments.class)
-public abstract class FabricEnchantmentsMixin {
+public abstract class ForgeEnchantmentsMixin {
 
 //    @Unique
 //    private static final ResourceKey<Enchantment> GOLDEN_FOODS_ENCHANTMENT = key("golden_foods_enchantment");

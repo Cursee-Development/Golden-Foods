@@ -1,5 +1,7 @@
 package com.cursee.golden_foods;
 
+import com.cursee.golden_foods.core.item.ForgeCreativeModeTabs;
+import com.cursee.golden_foods.core.item.ForgeItems;
 import com.cursee.monolib.core.sailing.Sailing;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -14,8 +16,10 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.List;
 import java.util.function.UnaryOperator;
@@ -46,6 +50,11 @@ public class GoldenFoodsForge {
     
         GoldenFoods.init();
         Sailing.register(Constants.MOD_NAME, Constants.MOD_ID, Constants.MOD_VERSION, Constants.MC_VERSION_RAW, Constants.PUBLISHER_AUTHOR, Constants.PRIMARY_CURSEFORGE_MODRINTH);
+
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ForgeItems.register(bus);
+        ForgeCreativeModeTabs.register(bus);
     }
 
 //    @Mod.EventBusSubscriber(modid = Constants.MOD_ID)

@@ -3,9 +3,10 @@
   "minVersion": "0.8",
   "package": "com.cursee.golden_foods.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [],
-  "client": [
+  "mixins": [
+    "NeoForgeFishingHookMixin"
   ],
+  "client": [],
   "server": [],
   "injectors": {
     "defaultRequire": 1
