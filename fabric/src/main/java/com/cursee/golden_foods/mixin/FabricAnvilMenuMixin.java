@@ -26,7 +26,7 @@ public abstract class FabricAnvilMenuMixin extends ItemCombinerMenu {
   @Shadow private int repairItemCountCost;
   @Final @Shadow private DataSlot cost;
   
-  @Inject(method = "createResult()V", at = @At(value= "TAIL"))
+  @Inject(method = "createResult()V", at = @At(value= "RETURN"))
   public void onCreateAnvilResult(CallbackInfo info) {
     AnvilMenu anvilmenu = (AnvilMenu)(Object)this;
     Container inputslots = this.inputSlots;

@@ -17,12 +17,22 @@ import oshi.util.tuples.Triplet;
 public class FabricGoldenFoodCreationRegistry {
 
 	public static void debugPrint(Object object) {
+
 		if (MonoLibConfiguration.debugging) {
 			System.out.println(object);
 		}
 	}
 
+//	public static Triplet<Integer, Integer, ItemStack> onRepairEvent(AnvilMenu pAnvilMenu, ItemStack slotLeft, ItemStack slotRight, ItemStack slotOutput, String itemName, int baseCost, Player player) {
+//
+//		debugPrint("\n\n\n anvil updated separator \n\n\n");
+//
+//		return new Triplet<>(baseCost, baseCost, slotOutput);
+//	}
+
 	public static Triplet<Integer, Integer, ItemStack> onRepairEvent(AnvilMenu pAnvilMenu, ItemStack slotLeft, ItemStack slotRight, ItemStack slotOutput, String itemName, int baseCost, Player player) {
+
+		debugPrint("\n\n\n separator \n\n\n");
 
 		debugPrint("enchantments found on slotRight");
 		for (Holder<Enchantment> holder : slotRight.getEnchantments().keySet()) {
@@ -208,7 +218,7 @@ public class FabricGoldenFoodCreationRegistry {
 			baseCost = Math.min(40, slotLeft.getCount());
 			return new Triplet<>(baseCost, baseCost, slotOutput);
 		}
-		
+
 		return null;
 	}
 }
